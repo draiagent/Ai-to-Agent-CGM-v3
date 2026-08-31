@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/analysis-record.schema.json",
+  "title": "Ai-to-Agent-CGM v3 Analysis Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meal_id", "baseline_mg_dl", "peak_mg_dl", "delta_peak_mg_dl",
+    "time_to_peak_min", "iauc_120", "iauc_180", "cgm_coverage_pct",
+    "quality_class", "quality_reasons", "analysis_version", "iauc_method"
+  ],
+  "properties": {
+    "meal_id": {"type": "string"},
+    "baseline_mg_dl": {"type": "number"},
+    "peak_mg_dl": {"type": "number"},
+    "delta_peak_mg_dl": {"type": "number"},
+    "time_to_peak_min": {"type": "number", "minimum": 0},
+    "iauc_120": {"type": "number", "minimum": 0},
+    "iauc_180": {"type": "number", "minimum": 0},
+    "recovery_time_min": {"type": ["number", "null"], "minimum": 0},
+    "cgm_coverage_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "quality_class": {"enum": ["A_CLEAN", "B_CONTEXTUAL", "X_EXCLUDED"]},
+    "quality_reasons": {"type": "array", "items": {"type": "string"}},
+    "analysis_version": {"type": "string"},
+    "iauc_method": {"type": "string"}
+  }
+}

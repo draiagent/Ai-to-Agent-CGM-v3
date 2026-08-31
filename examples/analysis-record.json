@@ -1,0 +1,15 @@
+{
+  "meal_id": "DEMO-001",
+  "baseline_mg_dl": 96.0,
+  "peak_mg_dl": 156.0,
+  "delta_peak_mg_dl": 60.0,
+  "time_to_peak_min": 55.0,
+  "iauc_120": 3840.0,
+  "iauc_180": 3912.5,
+  "recovery_time_min": 125.0,
+  "cgm_coverage_pct": 100.0,
+  "quality_class": "A_CLEAN",
+  "quality_reasons": [],
+  "analysis_version": "1.1.0",
+  "iauc_method": "wolever_incremental"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/metabolic-panel.schema.json",
+  "title": "Ai-to-Agent-CGM v3 Metabolic Panel",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["panel_version", "n_readings"],
+  "properties": {
+    "panel_version": {"type": "string"},
+    "n_readings": {"type": "integer", "minimum": 0},
+    "span_hours": {"type": "number", "minimum": 0},
+    "mean_glucose_mg_dl": {"type": "number"},
+    "gmi_pct": {"type": "number"},
+    "sd_mg_dl": {"type": "number", "minimum": 0},
+    "cv_pct": {"type": ["number", "null"], "minimum": 0},
+    "cv_stable": {"type": "boolean"},
+    "tir_70_180_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "tbr_lt70_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "tbr_lt54_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "tar_gt180_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "tar_gt250_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "overnight_mean_mg_dl": {"type": ["number", "null"]},
+    "overnight_cv_pct": {"type": ["number", "null"]},
+    "error": {"type": "string"}
+  }
+}

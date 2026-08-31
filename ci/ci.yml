@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt jsonschema
+      - name: Compile and test
+        run: |
+          python -m py_compile scripts/*.py
+          python -m unittest discover -s tests -v
+      - name: Validate JSON and schemas
+        run: |
+          for f in schemas/*.json; do python -m json.tool "$f" >/dev/null; done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          pairs = [
+              ("schemas/meal-record.schema.json", "examples/meal-record.json"),
+              ("schemas/analysis-record.schema.json", "examples/analysis-record.json"),
+              ("schemas/personal-food-table.schema.json", "examples/personal-food-table.json"),
+              ("schemas/metabolic-panel.schema.json", "examples/metabolic-panel.json"),
+          ]
+          for schema_path, example_path in pairs:
+              schema = json.loads(Path(schema_path).read_text())
+              example = json.loads(Path(example_path).read_text())
+              Draft202012Validator(schema).validate(example)
+              print(f"validated: {example_path}")
+          PY
+      - name: Reproduce example outputs
+        run: |
+          python scripts/analyze_cgm.py --cgm examples/cgm.csv --meals examples/meals.csv --output /tmp/analysis.csv
+          python scripts/metabolic_panel.py --cgm examples/cgm.csv --output /tmp/panel.json
+          python scripts/apply_food_table.py --meal examples/meal-record.json --table examples/personal-food-table.json --output /tmp/corrected.json
+      - name: Check committed content for common secrets
+        run: |
+          if git grep -n -I -E '(api[_-]?key|secret|password)[[:space:]]*[:=][[:space:]]*[^<[:space:]]{8,}' -- ':!SECURITY.md'; then
+            echo "Potential secret-like content found"
+            exit 1
+          fi
+

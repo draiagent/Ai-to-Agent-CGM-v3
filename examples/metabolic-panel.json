@@ -1,0 +1,17 @@
+{
+  "panel_version": "1.0.0",
+  "n_readings": 40,
+  "span_hours": 3.2,
+  "mean_glucose_mg_dl": 115.4,
+  "gmi_pct": 6.07,
+  "sd_mg_dl": 21.4,
+  "cv_pct": 18.5,
+  "cv_stable": true,
+  "tir_70_180_pct": 100.0,
+  "tbr_lt70_pct": 0.0,
+  "tbr_lt54_pct": 0.0,
+  "tar_gt180_pct": 0.0,
+  "tar_gt250_pct": 0.0,
+  "overnight_mean_mg_dl": null,
+  "overnight_cv_pct": null
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "白飯",
+    "aliases": "熟白飯、白米飯、steamed rice",
+    "carb_per_100g": 28,
+    "net_carb_per_100g": 27.6,
+    "protein_per_100g": 2.7,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 0.4,
+    "gi": 73,
+    "default_portion_g": 150
+  },
+  {
+    "name": "糙米飯",
+    "aliases": "brown rice、糙米",
+    "carb_per_100g": 23,
+    "net_carb_per_100g": 21.2,
+    "protein_per_100g": 2.6,
+    "fat_per_100g": 0.9,
+    "fiber_per_100g": 1.8,
+    "gi": 68,
+    "default_portion_g": 150
+  },
+  {
+    "name": "無糖豆漿",
+    "aliases": "豆漿、soy milk",
+    "carb_per_100g": 1.8,
+    "net_carb_per_100g": 1.3,
+    "protein_per_100g": 3.6,
+    "fat_per_100g": 1.6,
+    "fiber_per_100g": 0.5,
+    "gi": 34,
+    "default_portion_g": 260
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/personal-food-table.schema.json",
+  "title": "Ai-to-Agent-CGM v3 Personal Food Table",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["name"],
+    "properties": {
+      "name": {"type": "string", "minLength": 1},
+      "aliases": {"type": "string"},
+      "carb_per_100g": {"type": "number", "minimum": 0},
+      "net_carb_per_100g": {"type": "number", "minimum": 0},
+      "protein_per_100g": {"type": "number", "minimum": 0},
+      "fat_per_100g": {"type": "number", "minimum": 0},
+      "fiber_per_100g": {"type": "number", "minimum": 0},
+      "gi": {"type": "number", "minimum": 0, "maximum": 110},
+      "default_portion_g": {"type": "number", "minimum": 0}
+    }
+  }
+}

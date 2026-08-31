@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/meal-record.schema.json",
+  "title": "Ai-to-Agent-CGM v1 Meal Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meal_id", "user_id", "image_ref", "meal_start_at", "timezone",
+    "meal_type", "foods", "nutrition_range", "confidence",
+    "user_confirmed", "model_id", "data_source_refs"
+  ],
+  "properties": {
+    "meal_id": {"type": "string", "minLength": 1},
+    "user_id": {"type": "string", "minLength": 1},
+    "image_ref": {"type": "string", "minLength": 1},
+    "captured_at": {"type": ["string", "null"], "format": "date-time"},
+    "uploaded_at": {"type": ["string", "null"], "format": "date-time"},
+    "meal_start_at": {"type": "string", "format": "date-time"},
+    "meal_end_at": {"type": ["string", "null"], "format": "date-time"},
+    "timezone": {"type": "string", "minLength": 1},
+    "meal_type": {
+      "enum": ["breakfast", "lunch", "dinner", "snack", "other"]
+    },
+    "foods": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "portion_g_low", "portion_g_high", "confidence"],
+        "properties": {
+          "name": {"type": "string"},
+          "cooking_method": {"type": ["string", "null"]},
+          "portion_g_low": {"type": "number", "minimum": 0},
+          "portion_g_high": {"type": "number", "minimum": 0},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "nutrition_range": {
+      "type": "object",
+      "required": ["carbs_g", "available_carbs_g", "protein_g", "fat_g", "fiber_g"],
+      "additionalProperties": false,
+      "properties": {
+        "carbs_g": {"$ref": "#/$defs/range"},
+        "available_carbs_g": {"$ref": "#/$defs/range"},
+        "protein_g": {"$ref": "#/$defs/range"},
+        "fat_g": {"$ref": "#/$defs/range"},
+        "fiber_g": {"$ref": "#/$defs/range"},
+        "estimated_gl": {"$ref": "#/$defs/nullableRange"}
+      }
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "user_confirmed": {"type": "boolean"},
+    "context": {"type": "object"},
+    "model_id": {"type": "string"},
+    "data_source_refs": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["low", "high"],
+      "properties": {
+        "low": {"type": "number", "minimum": 0},
+        "high": {"type": "number", "minimum": 0}
+      }
+    },
+    "nullableRange": {
+      "anyOf": [{"$ref": "#/$defs/range"}, {"type": "null"}]
+    }
+  }
+}
+

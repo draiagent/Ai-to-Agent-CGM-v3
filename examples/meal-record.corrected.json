@@ -1,0 +1,116 @@
+{
+  "meal_id": "DEMO-001",
+  "user_id": "USER-DEMO",
+  "image_ref": "synthetic://meal-demo-001",
+  "captured_at": "2026-08-31T11:58:00+08:00",
+  "uploaded_at": "2026-08-31T11:59:00+08:00",
+  "meal_start_at": "2026-08-31T12:00:00+08:00",
+  "meal_end_at": "2026-08-31T12:20:00+08:00",
+  "timezone": "Asia/Taipei",
+  "meal_type": "lunch",
+  "foods": [
+    {
+      "name": "熟白飯",
+      "cooking_method": "蒸煮",
+      "portion_g_low": 130,
+      "portion_g_high": 170,
+      "confidence": 0.82,
+      "matched_ref": "白飯",
+      "source": "personal_table",
+      "nutrition_range": {
+        "carbs_g": {
+          "low": 36.4,
+          "high": 47.6
+        },
+        "available_carbs_g": {
+          "low": 35.9,
+          "high": 46.9
+        },
+        "protein_g": {
+          "low": 3.5,
+          "high": 4.6
+        },
+        "fat_g": {
+          "low": 0.4,
+          "high": 0.5
+        },
+        "fiber_g": {
+          "low": 0.5,
+          "high": 0.7
+        }
+      }
+    }
+  ],
+  "nutrition_range": {
+    "carbs_g": {
+      "low": 45,
+      "high": 60
+    },
+    "available_carbs_g": {
+      "low": 43,
+      "high": 58
+    },
+    "protein_g": {
+      "low": 3,
+      "high": 5
+    },
+    "fat_g": {
+      "low": 0,
+      "high": 2
+    },
+    "fiber_g": {
+      "low": 1,
+      "high": 3
+    },
+    "estimated_gl": {
+      "low": 30,
+      "high": 41
+    }
+  },
+  "confidence": 0.8,
+  "user_confirmed": true,
+  "context": {
+    "overlap_flag": false,
+    "activity_flag": false
+  },
+  "model_id": "demo-model-v1",
+  "data_source_refs": [
+    {
+      "source": "synthetic-example",
+      "version": "1.0"
+    }
+  ],
+  "personal_table_override": {
+    "override_version": "1.0.0",
+    "matched_foods": 1,
+    "total_foods": 1,
+    "nutrition_range_from_table": {
+      "carbs_g": {
+        "low": 36.4,
+        "high": 47.6
+      },
+      "available_carbs_g": {
+        "low": 35.9,
+        "high": 46.9
+      },
+      "protein_g": {
+        "low": 3.5,
+        "high": 4.6
+      },
+      "fat_g": {
+        "low": 0.4,
+        "high": 0.5
+      },
+      "fiber_g": {
+        "low": 0.5,
+        "high": 0.7
+      }
+    },
+    "gi_weighted": 73,
+    "gi_source": "personal_table",
+    "estimated_gl_from_table": {
+      "low": 26.2,
+      "high": 34.2
+    }
+  }
+}

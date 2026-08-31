@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+analysis_output.csv
+raw-data/
+*.xlsx
+*.xls
+.DS_Store
+
