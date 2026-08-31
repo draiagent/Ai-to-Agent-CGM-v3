@@ -1,5 +1,7 @@
 # Ai-to-Agent-CGM-v3
 
+[![CI](https://github.com/draiagent/Ai-to-Agent-CGM-v3/actions/workflows/ci.yml/badge.svg)](https://github.com/draiagent/Ai-to-Agent-CGM-v3/actions/workflows/ci.yml)
+
 > 拍下一餐、對齊一條曲線、累積一套真正屬於自己的升糖地圖。
 
 `Ai-to-Agent-CGM-v3` 是 `v1`（契約優先、CI、治理、MIT）與 `v2`（可執行原型、代謝面板、Wolever iAUC、個人食物表）的**收斂版**：以廠商中立、可驗證的資料契約為主線，把 v2 的成熟模組併入，作為可持續開發成 Web／App 的基底。
@@ -172,13 +174,24 @@ python scripts/apply_food_table.py \
 
 輸入與輸出格式見 [docs/02-data-contract.md](docs/02-data-contract.md)，JSON Schema 位於 `schemas/`。
 
-執行自動化測試：
+執行自動化測試（15 項）：
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-GitHub Actions 會在每次 Push 或 Pull Request 自動執行語法、JSON、Schema、範例可重現與隱私樣式測試。
+### CI（已啟用）
+
+`.github/workflows/ci.yml` 在每次 Push 與 Pull Request 執行，狀態見頁首徽章。步驟：
+
+| 步驟 | 內容 |
+|---|---|
+| Compile and test | `py_compile scripts/*.py` ＋ 15 項 unittest |
+| Validate JSON and schemas | 4 份 schema 與對應範例逐一以 Draft 2020-12 驗證 |
+| Reproduce example outputs | 實跑三支 script 產出範例，確保可重現 |
+| Check for common secrets | 掃描疑似金鑰／密碼樣式 |
+
+執行環境：Ubuntu、Python 3.12、`actions/checkout@v5`、`actions/setup-python@v6`。
 
 ## 9. 專案結構
 
